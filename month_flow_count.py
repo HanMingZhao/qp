@@ -21,7 +21,7 @@ LEFT JOIN med_plat_account mpa
 ON mpa.`account_id` = mfh.`account_id`
 WHERE mpa.`rank_id` IN (8,9,10,11,12,13,14,15,16,17,18,19) 
 AND mfh.add_time >='2017-11-1' 
-AND mfh.add_time < '2017-11-3' 
+AND mfh.add_time < '2017-12-1' 
 GROUP BY mfh.title_name
 )t
 GROUP BY t.account_id,t.plat_id
@@ -48,7 +48,7 @@ LEFT JOIN med_plat_account mpa
 ON mpa.`account_id` = mfh.`account_id`
 WHERE mpa.`rank_id` IN (8,9,10,11,12,13,14,15,16,17,18,19) 
 AND mfh.add_time >='2017-11-1' 
-AND mfh.add_time < '2017-11-3' 
+AND mfh.add_time < '2017-12-1' 
 GROUP BY mfh.title_name
 )t
 group by t.account_id,t.plat_id
