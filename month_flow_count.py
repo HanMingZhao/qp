@@ -16,7 +16,7 @@ count_sql = '''
 SELECT t.account_name,t.plat_name,COUNT(1) FROM 
 (
 SELECT mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,mfh.title_name 
-FROM med_flow_history mfh
+FROM med_flow mfh
 LEFT JOIN med_plat_account mpa
 ON mpa.`account_id` = mfh.`account_id`
 WHERE mpa.`rank_id` IN (8,9,10,11,12,13,14,15,16,17,18,19) 
@@ -43,7 +43,7 @@ sum_sql = '''
 select t.account_name,t.plat_name,sum(t.flow) from
 (
 SELECT mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,mfh.title_name,max(mfh.`flow_count`) flow
-FROM med_flow_history mfh
+FROM med_flow mfh
 LEFT JOIN med_plat_account mpa
 ON mpa.`account_id` = mfh.`account_id`
 WHERE mpa.`rank_id` IN (8,9,10,11,12,13,14,15,16,17,18,19) 
