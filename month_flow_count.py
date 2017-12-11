@@ -13,12 +13,15 @@ workbook = xlwt.Workbook()
 start = time.time()
 
 count_sql = '''
-SELECT t.account_name,t.plat_name,COUNT(1) FROM 
+SELECT t.name,t.account_name,t.plat_name,COUNT(1) FROM 
 (
-SELECT mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,mfh.title_name 
+SELECT concat(mmu.nick_name,mmu.user_limit) `name`,mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,
+mfh.title_name 
 FROM med_flow mfh
 LEFT JOIN med_plat_account mpa
 ON mpa.`account_id` = mfh.`account_id`
+left join mng_manager_user mmu
+on mpa.user_id = mmu.muid
 WHERE mpa.`rank_id` IN (8,9,10,11,12,13,14,15,16,17,18,19) 
 AND mfh.add_time >='2017-11-1' 
 AND mfh.add_time < '2017-12-1' 
@@ -40,12 +43,15 @@ for i, r in enumerate(result):
     sheet.write(i+1, 2, r[2])
 
 sum_sql = '''
-select t.account_name,t.plat_name,sum(t.flow) from
+select t.name,t.account_name,t.plat_name,sum(t.flow) from
 (
-SELECT mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,mfh.title_name,max(mfh.`flow_count`) flow
+SELECT concat(mmu.nick_name,mmu.user_limit) mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,mfh.title_name,
+max(mfh.`flow_count`) flow
 FROM med_flow mfh
 LEFT JOIN med_plat_account mpa
 ON mpa.`account_id` = mfh.`account_id`
+left join mng_manager_user mmu
+on mpa.user_id = mmu.muid
 WHERE mpa.`rank_id` IN (8,9,10,11,12,13,14,15,16,17,18,19) 
 AND mfh.add_time >='2017-11-1' 
 AND mfh.add_time < '2017-12-1' 
