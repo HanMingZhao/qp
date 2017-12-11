@@ -45,7 +45,7 @@ for i, r in enumerate(result):
 sum_sql = '''
 select t.name,t.account_name,t.plat_name,sum(t.flow) from
 (
-SELECT concat(mmu.nick_name,mmu.user_limit) mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,mfh.title_name,
+SELECT concat(mmu.nick_name,mmu.user_limit), mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,mfh.title_name,
 max(mfh.`flow_count`) flow
 FROM med_flow mfh
 LEFT JOIN med_plat_account mpa
