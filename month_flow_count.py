@@ -13,7 +13,7 @@ workbook = xlwt.Workbook()
 start = time.time()
 
 count_sql = '''
-SELECT t.add_time,t.name,t.account_name,t.plat_name,COUNT(1) FROM 
+SELECT date(t.add_time),t.name,t.account_name,t.plat_name,COUNT(1) FROM 
 (
 SELECT concat(mmu.nick_name,mmu.user_limit) `name`,mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,
 mfh.title_name,mfh.add_time 
@@ -27,7 +27,7 @@ AND mfh.add_time >='2017-11-1'
 AND mfh.add_time < '2017-12-1' 
 GROUP BY mfh.title_name
 )t
-GROUP BY t.account_id,t.plat_id,t.add_time
+GROUP BY t.account_id,t.plat_id,date(t.add_time)
 '''
 src_cur.execute(count_sql)
 print(time.time()-start)
