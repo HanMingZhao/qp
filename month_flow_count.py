@@ -24,7 +24,7 @@ ON mpa.`account_id` = mfh.`account_id`
 left join mng_manager_user mmu
 on mpa.user_id = mmu.muid
 WHERE mpa.`rank_id` IN (8,9,10,11,12,13,14,15,16,17,18,19) 
-AND mfh.add_time >='2017-11-1' 
+AND mfh.add_time >='2017-10-1' 
 AND mfh.add_time < '2017-12-1' 
 GROUP BY mfh.title_name
 )t
@@ -53,8 +53,8 @@ for r in result:
         user_account_plat_dict[uap][r[0].strftime(config.date_format)] = r[4]
     else:
         user_account_plat_dict[uap] = {r[0].strftime(config.date_format): r[4]}
-for i in range(30):
-    day = datetime.datetime.strptime('2017-11-1', config.date_format) + datetime.timedelta(i)
+for i in range(61):
+    day = datetime.datetime.strptime('2017-10-1', config.date_format) + datetime.timedelta(i)
     day_str = day.strftime(config.date_format)
     for uap in user_account_plat_dict:
         if day_str not in user_account_plat_dict[uap]:
@@ -81,7 +81,7 @@ ON mpa.`account_id` = mfh.`account_id`
 left join mng_manager_user mmu
 on mpa.user_id = mmu.muid
 WHERE mpa.`rank_id` IN (8,9,10,11,12,13,14,15,16,17,18,19) 
-AND mfh.add_time >='2017-11-1' 
+AND mfh.add_time >='2017-10-1' 
 AND mfh.add_time < '2017-12-1' 
 GROUP BY mfh.title_name
 )t
@@ -110,8 +110,8 @@ for r in result:
         user_account_plat_dict[uap][r[0].strftime(config.date_format)] = r[4]
     else:
         user_account_plat_dict[uap] = {r[0].strftime(config.date_format): r[4]}
-for i in range(30):
-    day = datetime.datetime.strptime('2017-11-1', config.date_format) + datetime.timedelta(i)
+for i in range(61):
+    day = datetime.datetime.strptime('2017-10-1', config.date_format) + datetime.timedelta(i)
     day_str = day.strftime(config.date_format)
     for uap in user_account_plat_dict:
         if day_str not in user_account_plat_dict[uap]:
