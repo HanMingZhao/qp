@@ -47,7 +47,7 @@ for i, r in enumerate(result):
     sheet.write(i+1, 4, r[4])
 
 sum_sql = '''
-select date(mfh.add_time),t.name,t.account_name,t.plat_name,sum(t.flow) from
+select date(t.add_time),t.name,t.account_name,t.plat_name,sum(t.flow) from
 (
 SELECT date(mfh.add_time),concat(mmu.nick_name,mmu.user_limit) `name`, mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,
 mfh.title_name,max(mfh.`flow_count`) flow
@@ -61,7 +61,7 @@ AND mfh.add_time >='2017-11-1'
 AND mfh.add_time < '2017-12-1' 
 GROUP BY mfh.title_name
 )t
-group by t.account_id,t.plat_id,date(mfh.add_time)
+group by t.account_id,t.plat_id,date(t.add_time)
 '''
 src_cur.execute(sum_sql)
 print(time.time()-start)
@@ -74,7 +74,7 @@ sheet.write(0, 3, '平台')
 sheet.write(0, 4, '流量')
 sheet.write(0, 5, '日均流量')
 for i, r in enumerate(result):
-    sheet.write(i+1, 0, r[0])
+    sheet.write(i+1, 0, r[0].strftime(config.date_format))
     sheet.write(i+1, 1, r[1])
     sheet.write(i+1, 2, r[2])
     sheet.write(i+1, 3, r[3])
