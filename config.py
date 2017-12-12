@@ -5,3 +5,5 @@ product = {'host': 'rm-m5eqhv11j9x8141hk.mysql.rds.aliyuncs.com',
            'pass': 'A6qs0cx5UEEf0cG0',
            'db': 'qp',
            'charset': 'utf8'}
+
+date_format = '%Y-%m-%d'
