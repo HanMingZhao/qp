@@ -73,8 +73,8 @@ for uap in user_account_plat_dict:
 sum_sql = '''
 select t.time,t.name,t.account_name,t.plat_name,sum(t.flow) from
 (
-SELECT date(mfh.add_time) `time`,concat(mmu.nick_name,mmu.user_limit) `name`, mfh.account_name,mfh.account_id,mfh.plat_name,mfh.plat_id,
-mfh.title_name,max(mfh.`flow_count`) flow
+SELECT date(mfh.add_time) `time`,concat(mmu.nick_name,mmu.user_limit) `name`, mfh.account_name,mfh.account_id,
+mfh.plat_name,mfh.plat_id,mfh.title_name,max(mfh.`flow_count`) flow
 FROM med_flow mfh
 LEFT JOIN med_plat_account mpa
 ON mpa.`account_id` = mfh.`account_id`
